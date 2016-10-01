@@ -22,6 +22,7 @@ import android.os.HandlerThread;
 
 import com.frostwire.jlibtorrent.Priority;
 import com.frostwire.jlibtorrent.SessionManager;
+import com.frostwire.jlibtorrent.SessionParams;
 import com.frostwire.jlibtorrent.SettingsPack;
 import com.frostwire.jlibtorrent.TorrentHandle;
 import com.frostwire.jlibtorrent.TorrentInfo;
@@ -433,7 +434,8 @@ public final class TorrentStream {
         }
 
         if (!torrentSession.isRunning()) {
-            torrentSession.start(settingsPack);
+            SessionParams params = new SessionParams(settingsPack);
+            torrentSession.start(params);
         } else {
             torrentSession.applySettings(settingsPack);
         }
